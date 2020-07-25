@@ -1,0 +1,24 @@
+{
+  "name": "vera",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lol218/vera-discord-bot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lol218/vera-discord-bot/issues"
+  },
+  "homepage": "https://github.com/lol218/vera-discord-bot#readme",
+  "dependencies": {
+    "discord.js": "^12.2.0",
+    "fs": "0.0.1-security",
+    "ytdl-core": "^3.1.2"
+  }
+}
