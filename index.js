@@ -1,6 +1,6 @@
 console.clear()
 console.log('chargemend de la librairie disord.js')
-const { Client, MessageAttachment } = require('discord.js');
+const {Client, MessageAttachment, MessageEmbed} = require('discord.js');
 console.log('OK')
 console.log('création du client discord')
 const client = new Client()
@@ -30,7 +30,7 @@ client.on('ready', () => {
 
 
 client.on('message', message => {
-    if (message.content.startsWith('!kick')) {
+    if (message.content.startsWith('/kick')) {
         // Assuming we mention someone in the message, this will return the user
         // Read more about mentions over at https://discord.js.org/#/docs/main/master/class/MessageMentions
         const user = message.mentions.users.first();
@@ -42,7 +42,7 @@ client.on('message', message => {
             if (member) {
                 /**
                  * Kick the member
-                 * Make sure you run this on a member, not a user!
+                 * Make sure you run this on a member, not a user/
                  * There are big differences between a user and a member
                  */
                 member
@@ -61,14 +61,14 @@ client.on('message', message => {
                     });
             } else {
                 // The mentioned user isn't in this guild
-                message.reply("That user isn't in this guild!");
+                message.reply("That user isn't in this guild/");
             }
             // Otherwise, if no user was mentioned
         } else {
-            message.reply("You didn't mention the user to kick!");
+            message.reply("You didn't mention the user to kick/");
         }
     }
-    if (message.content.startsWith('!ban')) {
+    if (message.content.startsWith('/ban')) {
         // Assuming we mention someone in the message, this will return the user
         // Read more about mentions over at https://discord.js.org/#/docs/main/master/class/MessageMentions
         const user = message.mentions.users.first();
@@ -80,14 +80,14 @@ client.on('message', message => {
             if (member) {
                 /**
                  * Ban the member
-                 * Make sure you run this on a member, not a user!
+                 * Make sure you run this on a member, not a user/
                  * There are big differences between a user and a member
                  * Read more about what ban options there are over at
                  * https://discord.js.org/#/docs/main/master/class/GuildMember?scrollTo=ban
                  */
                 member
                     .ban({
-                        reason: 'They were bad!',
+                        reason: 'They were bad/',
                     })
                     .then(() => {
                         // We let the message author know we were able to ban the person
@@ -103,27 +103,46 @@ client.on('message', message => {
                     });
             } else {
                 // The mentioned user isn't in this guild
-                message.reply("That user isn't in this guild!");
+                message.reply("That user isn't in this guild/");
             }
         } else {
             // Otherwise, if no user was mentioned
-            message.reply("You didn't mention the user to ban!");
+            message.reply("You didn't mention the user to ban/");
         }
     }
     if (message.content === 'ping') {
         // Send "pong" to the same channel
         message.channel.send('pong');
     }
-    if (message.content === '!avatar') {
-        // Send the user's avatar URL
-        message.reply(message.author.displayAvatarURL());
+    if (message.content === '/avatar') {
+        const embed = new MessageEmbed()
+            // Set the title of the field
+            .setTitle('avatar')
+            // Set the color of the embed
+            .setColor(0xff0000)
+            // Set the main content of the embed
+            .setDescription(message.author.username + "\n" + message.author.id + "\n ban possible :" + message.member.bannable + "\n pseudo :" + message.member.nickname + "\n url de l'image :" + message.author.displayAvatarURL());
+            message.channel.send(embed)
+            message.channel.send(message.author.displayAvatarURL())
     }
-    if (message.content === '!rip') {
+    if (message.content === '/rip') {
         message.delete()
         // Create the attachment using MessageAttachment
         const attachment = new MessageAttachment('https://i.imgur.com/w3duR07.png');
         // Send the attachment in the message channel
         message.channel.send(attachment);
     }
+
+    if (message.content.startsWith('/help')) {
+
+        const embed = new MessageEmbed() 
+            .setTitle('help')
+            .setURL('https://docs.google.com/document/d/e/2PACX-1vS8KPVNaxdiLtz8fVwnd4mXxewUnRXD6bKRC1580g4IAQXDLbfxQJh_J2o7paGDiGXBebS4PqkNdjTM/pub')
+            .setDescription("/kick @exemple\n   Kick l’utilisateur @exemple\n   /ban @exemple\n   Ban l’utilisateur @exemple\n   ping\n   pong\n   /avatar\n   Montre plusieur informations sur vous.\n   /rip\n   affiche une image RIP\n   /help\n   affiche ceci")
+        message.channel.send(embed)
+
+    }
+
+    
 
 })
