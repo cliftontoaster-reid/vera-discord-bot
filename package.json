@@ -19,6 +19,7 @@
   "dependencies": {
     "discord.js": "^12.2.0",
     "fs": "0.0.1-security",
+    "valid-url": "^1.0.9",
     "ytdl-core": "^3.1.2"
   }
 }

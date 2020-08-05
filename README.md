@@ -1,2 +1,2 @@
-# vera bot
+# bot-discord
  
