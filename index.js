@@ -136,10 +136,48 @@ client.on('message', message => {
     if (message.content.startsWith('/help')) {
 
         const embed = new MessageEmbed() 
-            .setTitle('help')
-            .setURL('https://docs.google.com/document/d/e/2PACX-1vS8KPVNaxdiLtz8fVwnd4mXxewUnRXD6bKRC1580g4IAQXDLbfxQJh_J2o7paGDiGXBebS4PqkNdjTM/pub')
-            .setDescription("/kick @exemple\n   Kick l’utilisateur @exemple\n   /ban @exemple\n   Ban l’utilisateur @exemple\n   ping\n   pong\n   /avatar\n   Montre plusieur informations sur vous.\n   /rip\n   affiche une image RIP\n   /help\n   affiche ceci")
-        message.channel.send(embed)
+            embed.setTitle('help')
+            embed.setColor(0x18f7b0)
+            embed.setURL('https://docs.google.com/document/d/e/2PACX-1vS8KPVNaxdiLtz8fVwnd4mXxewUnRXD6bKRC1580g4IAQXDLbfxQJh_J2o7paGDiGXBebS4PqkNdjTM/pub')
+            embed.setThumbnail('https://lol218.github.io/vera-discord-bot/00422c9236bef2d0bc51052877c5aaa6.png')
+            embed.setDescription(message.author.username + ", voici les commande disponibles acctuellement pour VERA")
+            embed.setImage("https://lh6.googleusercontent.com/-DZWyCDVe5Dc/AAAAAAAAAAI/AAAAAAAAAAA/AMZuucl2isnfGwvzs4ubqONWoCkAHEBAUQ/s96-c/photo.jpg")
+            embed.addFields(
+                {
+                    name: '/kick',
+                    value: "Expulse le membre @mentioné",
+                    inline: true
+                },
+                {
+                    name: "/ban",
+                    value: "banni le joueur @mentionné",
+                    inline: true
+                },
+                {
+                    name: "ping",
+                    value: "Dit pong",
+                    inline: true
+                },
+                {
+                    name: "/avatar",
+                    value: "Montre plusieur informations sur vous",
+                    inline: true
+                },
+                {
+                    name: "/rip",
+                    value: "Affiche une image RIP",
+                    inline: true
+                },
+                {
+                    name: "/help",
+                    value: "Affiche ceci",
+                    inline: true
+                }
+            )
+            embed.setTimestamp()
+            embed.setFooter("GPF: https://grenoblepcfactory.wixsite.com/monsite\nGithub: https://lol218.github.io/vera-discord-bot/", "https://lh6.googleusercontent.com/-DZWyCDVe5Dc/AAAAAAAAAAI/AAAAAAAAAAA/AMZuucl2isnfGwvzs4ubqONWoCkAHEBAUQ/s96-c/photo.jpg")
+            message.channel.send(embed)
+        // https://lol218.github.io/vera-discord-bot/00422c9236bef2d0bc51052877c5aaa6.png
 
     }
 
