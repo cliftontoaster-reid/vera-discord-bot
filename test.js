@@ -1,9 +1,27 @@
-if (message.content === "/ink") {
-  if (message.member.voice.channel) {
-      const connection = await message.member.voice.channel.join();
-      const dispatcher = connection.play('src/music/ink.mp3');
-      dispatcher.setVolume(0.3)
-  } else {
-      message.reply('You need to join a voice channel first!');
-  }
-}
+const discord = require('discord.js')
+const client = new discord.Client()
+const config = require('./src/config.json')
+client.login(config.token)
+
+client.on('message', message => {
+    const embed = new discord.MessageEmbed()
+    embed.setColor('#A9DEF9')
+        embed.setTitle(message.author.username)
+        embed.setImage(message.author.avatarURL)
+        embed.addFields(
+            {
+                name: "id",
+                value: message.author.id,
+                inline: true
+            },
+            {
+                name: "last message",
+                value: message.author.lastMessage,
+                inline: true
+            }
+        )
+        .setAuthor('The French')
+    message.channel.send(embed)
+
+})
+
